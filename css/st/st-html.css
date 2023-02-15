@@ -1,0 +1,39 @@
+/* st.css */
+
+* {
+	font-family: 'Calibria', sans-serif;
+}
+p {
+	font-family: 'Calibria', sans-serif;
+}
+body {
+	color: #000;
+}
+h1, h2, h3, h4, h5, h6 {
+	font-family: 'Ethnocentric', sans-serif;
+	padding-top:0.2em;
+	text-align: center;
+	text-transform: uppercase;
+	color: rgb(127, 0, 255)
+}
+h1 {
+	font-size: 26px;
+}
+h2 {
+	font-size: 22px;
+}
+h3 {
+	font-size: 18px;
+}
+h4 {
+	font-size: 14px;
+}
+h5 {
+	font-size: 12px;
+}
+h6 {
+	font-size: 10px;
+}
+button {
+	text-transform: uppercase;
+}

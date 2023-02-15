@@ -1,0 +1,14 @@
+/* st-page.css */
+
+.st-page {
+	position: relative;
+	min-height: 512px;
+	text-align: center;
+	width: 100%;
+}
+
+.st-page-ft {
+	margin: 0px auto;
+	position: relative;
+	width: 980px;
+}

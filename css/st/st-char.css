@@ -1,0 +1,42 @@
+/* st-char.css */
+.st-title {
+	background: #000000;
+	color: rgb(127, 0, 255);
+	font-size: 28px;
+}
+
+.st-elem {
+	position: absolute;
+	display: inline-block;
+	font-size: 14px;
+	text-align: center;
+}
+
+.st-label {
+	text-transform: uppercase;
+}
+
+.st-total {
+	font-weight: bold;
+}
+
+.st-form-choices {
+  list-style-type: none;
+  position: relative;
+  padding-left: 0;
+}
+
+a {
+	color: rgb(127, 0, 255);
+}
+
+.st-form-choices li:before {
+  content: "\25BA";
+  top: 5px;
+  left: -10px;
+}
+
+
+.st-clear {
+	clear: both;
+}
