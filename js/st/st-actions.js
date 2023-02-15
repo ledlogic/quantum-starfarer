@@ -3,13 +3,33 @@
 st.actions = {
 	init: function() {
 		st.log("st.actions.init");
-		$("a[data-action=choose-char]").on("click", st.actions.chooseChar);
+		$("a[data-action=choose-species]").on("click", st.actions.chooseSpecies);
 	},
 	
-	chooseChar: function(e) {
-		st.log("st.actions.chooseChar");
+	chooseSpecies: function(e) {
+		st.log("st.actions.chooseSpecies");
 		var choice = $(e.target).data("choice");
-		st.log(choice);
-		$("a[data-action=choose-char]").not("[data-choice=" + choice + "]").parent().hide();
+		st.log("choice[" + choice + "]");
+		if (choice == "robot") {
+			$("a[data-action=choose-species]").not("[data-choice=" + choice + "]").parent().hide();
+			$("a[data-action=choose-species]").off("click").changeElementType("span");
+			st.char.setSpecies(choice);
+		} else {
+			alert("Not yet available (species=" + choice + ").");
+		}
 	}
 };
+
+(function($) {
+    $.fn.changeElementType = function(newType) {
+        var attrs = {};
+
+        $.each(this[0].attributes, function(idx, attr) {
+            attrs[attr.nodeName] = attr.nodeValue;
+        });
+
+        this.replaceWith(function() {
+            return $("<" + newType + "/>").append($(this).contents());
+        });
+    };
+})(jQuery);

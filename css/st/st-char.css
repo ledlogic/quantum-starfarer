@@ -31,7 +31,7 @@ a {
 }
 
 .st-form-choices li:before {
-  content: "\25BA";
+  content: "\25BA \0020";
   top: 5px;
   left: -10px;
 }
