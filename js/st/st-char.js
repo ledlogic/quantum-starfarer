@@ -4,7 +4,7 @@ st.char = {
 	species:null,
 	
 	stats: {
-		cost: 0, // in KCr
+		cost: 0,
 		endurance: 0,
 		lifeblood: 0,
 		skills: { }
@@ -30,11 +30,26 @@ st.char = {
 		var lifeblood = st.math.die(4, 6, 0);
 		st.char.setLifeblood(lifeblood);
 		
+		// skills
 		st.char.setSkill("physical", 1);
+		
+		var additionalSkillPoints = 3 + (st.math.probMet(0.3) ? 1 : 0);
+		st.log("additionalSkillPoints[" + additionalSkillPoints + "]");
+		
+		for (var i=0; i< additionalSkillPoints; i++) {
+			st.log("additionalSkill[" + i + "]");
+			var skill = st.skills.list[st.math.dieArray(st.skills.list)];
+			st.log("skill[" + skill + "]");
+			st.char.incrSkill(skill, 1);
+		}
 	},
 	
 	getStat: function(stat) {
 		return this.stats[stat];
+	},
+	
+	getSkill: function(skill) {
+		return this.stats.skills[skill];
 	},
 	
 	incrCost: function(incr) {
@@ -45,6 +60,17 @@ st.char = {
 		var newCost = oldCost + incr;
 		st.log("newCost[" + newCost + "]");
 		st.char.setStat("cost", newCost);
+	},
+	
+	incrSkill: function(skill, incr) {
+		st.log("incrSkill");
+		st.log("skill[" + skill + "]");
+		st.log("incr[" + incr + "]");
+		var oldSkill = st.char.getSkill(skill);
+		st.log("oldSkill[" + oldSkill + "]");
+		var newSkill = oldSkill + incr;
+		st.log("newSkill[" + newSkill + "]");
+		st.char.setSkill(skill, newSkill);
 	},
 
 	setSpecies: function(species) {
@@ -71,13 +97,13 @@ st.char = {
 	setEndurance: function(endurance) {
 		st.log("st.char.setEndurance");
 		st.char.setStat("endurance", endurance);
-		st.char.incrCost(500 + 10*endurance);
+		st.char.incrCost(500e3 + 10e3*endurance);
 	},
 	
 	setLifeblood: function(lifeblood) {
 		st.log("st.char.setLifeblood");
 		st.char.setStat("lifeblood", lifeblood);
-		st.char.incrCost(5*lifeblood);
+		st.char.incrCost(5e3*lifeblood);
 	},
 	
 	setSkill: function(skillName, skillValue) {

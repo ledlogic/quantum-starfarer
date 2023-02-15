@@ -15,5 +15,4 @@ st.skills = {
 	init: function() {
 		st.log("st.skills.init");
 	}
-	
 };

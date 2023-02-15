@@ -32,5 +32,14 @@ st.math = {
 		var d20b = st.math.dieN(die);
 		var d20 = Math.max(d20a, d20b);
 		return d20;
+	},
+	probMet: function(ptest) {
+		st.log("st.math.probMet");
+		st.log("ptest[" + ptest + "]");
+		var p = Math.random();
+		st.log("p[" + p + "]");
+		var ret = (p<=ptest);
+		st.log("ret[" + ret + "]");
+		return ret;
 	}
 };
