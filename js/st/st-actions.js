@@ -10,7 +10,7 @@ st.actions = {
 		st.log("st.actions.chooseSpecies");
 		var choice = $(e.target).data("choice");
 		st.log("choice[" + choice + "]");
-		if (choice == "robot") {
+		if (choice == "android") {
 			$("a[data-action=choose-species]").not("[data-choice=" + choice + "]").parent().hide();
 			$("a[data-action=choose-species]").off("click").changeElementType("span");
 			st.char.setSpecies(choice);

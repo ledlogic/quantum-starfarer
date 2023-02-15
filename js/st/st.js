@@ -9,6 +9,7 @@ var st = {
 
 	init: function() {
 		st.log("st.init");
+		st.skills.init();
 		st.char.init();
 		st.actions.init();
 	}
