@@ -25,6 +25,7 @@ st.render = {
 			
 		// stats
 		t.push("<table class=\"st-cost\"><tbody>");
+		t.push("<tr><th colspan=\"2\" class=\"st-cost-desc\">Core</th></tr>");
 
 		var r = [];
 

@@ -47,6 +47,10 @@
 	padding: 4px;
 }
 
+.st-cost th.st-cost-desc {
+	text-align: center;
+}
+
 .st-cost th {
 	text-align: right;
 }
