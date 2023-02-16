@@ -1,7 +1,7 @@
-Body,Cost,Reliability,Durability,Tech,Ram
-Small,8000,4,6,Space,0
-Medium,6000,6,12,Space,0
-Large,10000,8,16,Atomic,1d6
-XL,20000,10,20,Mechanical,2d6
-XXL,25000,20,40,Mechanical,3d6
-XXXL,30000,30,60,Mechanical,4d6
+Body,Relative Size,Cost,Reliability,Durability,Tech,Ram
+Small,Small Dog Size,8000,4,6,Space,0
+Medium,Child Human Size,6000,6,12,Space,0
+Large,Adult Human Size,10000,8,16,Atomic,1d6
+XL,Motorcycle Size,20000,10,20,Mechanical,2d6
+XXL,Ground Car Size,25000,20,40,Mechanical,3d6
+XXXL,Truck Size,30000,30,60,Mechanical,4d6
