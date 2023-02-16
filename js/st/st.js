@@ -10,6 +10,10 @@ var st = {
 	init: function() {
 		st.log("st.init");
 		st.skills.init();
+		st.traits.init();
+	},
+	
+	init2: function() {
 		st.char.init();
 		st.actions.init();
 	}

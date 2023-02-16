@@ -7,7 +7,8 @@ st.char = {
 		cost: 0,
 		endurance: 0,
 		lifeblood: 0,
-		skills: { }
+		skills: { },
+		traits: []
 	},
 	
 	init: function() {
@@ -16,7 +17,7 @@ st.char = {
 			st.log(skill);
 			st.char.setSkill(skill, 0);
 		});
-		st.log(st.char.stats.skills);			
+		st.log(st.char.stats.skills);	
 	},
 	
 	initAndroid: function() {
@@ -42,6 +43,20 @@ st.char = {
 			st.log("skill[" + skill + "]");
 			st.char.incrSkill(skill, 1);
 		}
+		
+		// traits
+		for (var i=0; i < 2; i++) {
+			st.log("trait[" + i + "]");
+			var trait = st.traits.list[st.math.dieArray(st.traits.list)];
+			st.log("trait.Trait[" + trait.Trait + "]");
+			if (!st.char.hasTrait(trait)) {
+				st.char.addTrait(trait);
+			}
+		}
+	},
+	
+	addTrait: function(trait) {
+		this.stats.traits.push(trait);
 	},
 	
 	getStat: function(stat) {
@@ -50,6 +65,20 @@ st.char = {
 	
 	getSkill: function(skill) {
 		return this.stats.skills[skill];
+	},
+	
+	hasTrait: function(trait) {
+		st.log("st.char.hasTrait");
+		st.log("trait.Trait[" + trait.Trait + "]");
+		var ret = false;
+		for (var i=0; i < st.char.stats.traits; i++) {
+			var iterTrait = st.char.stats.traits[i];
+			if (trait.Trait == iterTrait.Trait) {
+				ret = true;
+			}
+		}
+		st.log("ret[" + ret + "]");
+		return ret;
 	},
 	
 	incrCost: function(incr) {
@@ -112,7 +141,7 @@ st.char = {
 		st.log("skillValue[" + skillValue + "]");
 		
 		st.char.stats.skills[skillName] = skillValue;
-		st.log(st.char.stats.skills);			
+		st.log(st.char.stats.skills);
 	}
 	
 };
