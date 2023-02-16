@@ -4,21 +4,21 @@ st.tech = {
 
 	list: [],	
 
-	init: function() {
+	init: function(callback) {
 		st.log("st.tech.init");
-		st.tech.loadTech();
+		st.tech.request(callback);
 	},
 	
-	loadTech: function() {
-		st.log("st.tech.loadTech");
+	request: function(callback) {
+		st.log("st.tech.request");
 		var url = "data/tech.csv?t=" + (new Date()).getTime();
 		Papa.parse(url, {
 			delimiter: "|",
 			download: true,
 			header: true,
 			complete: function(d) {
-				st.tech.techResponse(d);
-				setTimeout(st.init6, 10);
+				st.tech.response(d);
+				setTimeout(callback, 10);
 			},
 			encoding: "UTF-8",
 			quotes: true,
@@ -26,8 +26,8 @@ st.tech = {
 		});
 	},
 	
-	techResponse: function(d) {
-		st.log("st.tech.techResponse");
+	response: function(d) {
+		st.log("st.tech.response");
 		st.log(d);
 		st.tech.list = d.data;
 	},

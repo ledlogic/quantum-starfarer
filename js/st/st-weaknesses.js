@@ -4,21 +4,21 @@ st.weaknesses = {
 
 	list: [],	
 
-	init: function() {
+	init: function(callback) {
 		st.log("st.weaknesses.init");
-		st.weaknesses.loadWeaknesses();
+		st.weaknesses.request(callback);
 	},
 	
-	loadWeaknesses: function() {
-		st.log("st.weaknesses.loadWeaknesses");
+	request: function(callback) {
+		st.log("st.weaknesses.request");
 		var url = "data/weaknesses.csv?t=" + (new Date()).getTime();
 		Papa.parse(url, {
 			delimiter: "|",
 			download: true,
 			header: true,
 			complete: function(d) {
-				st.weaknesses.weaknessesResponse(d);
-				setTimeout(st.init3, 10);
+				st.weaknesses.response(d);
+				setTimeout(callback, 10);
 			},
 			encoding: "UTF-8",
 			quotes: true,
@@ -26,8 +26,8 @@ st.weaknesses = {
 		});
 	},
 	
-	weaknessesResponse: function(d) {
-		st.log("st.weaknesses.weaknessesResponse");
+	response: function(d) {
+		st.log("st.weaknesses.response");
 		st.log(d);
 		st.weaknesses.list = d.data;
 	}

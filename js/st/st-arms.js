@@ -1,22 +1,22 @@
-/* st-body.js */
+/* st-arms.js */
 
-st.body = {
+st.arms = {
 
 	list: [],	
 
 	init: function(callback) {
-		st.log("st.body.init");
-		st.body.request(callback);
+		st.log("st.arms.init");
+		st.arms.request(callback);
 	},
 	
 	request: function(callback) {
-		st.log("st.body.request");
-		var url = "data/body.csv?t=" + (new Date()).getTime();
+		st.log("st.arms.request");
+		var url = "data/arms.csv?t=" + (new Date()).getTime();
 		Papa.parse(url, {
 			download: true,
 			header: true,
 			complete: function(d) {
-				st.body.response(d);
+				st.arms.response(d);
 				setTimeout(callback, 10);
 			},
 			encoding: "UTF-8"
@@ -24,8 +24,8 @@ st.body = {
 	},
 	
 	response: function(d) {
-		st.log("st.body.response");
+		st.log("st.arms.response");
 		st.log(d);
-		st.body.list = d.data;
+		st.arms.list = d.data;
 	}
 };

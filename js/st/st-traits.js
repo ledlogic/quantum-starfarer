@@ -4,21 +4,21 @@ st.traits = {
 
 	list: [],	
 
-	init: function() {
+	init: function(callback) {
 		st.log("st.traits.init");
-		st.traits.loadTraits();
+		st.traits.request(callback);
 	},
 	
-	loadTraits: function() {
-		st.log("st.traits.loadTraits");
+	request: function(callback) {
+		st.log("st.traits.request");
 		var url = "data/traits.csv?t=" + (new Date()).getTime();
 		Papa.parse(url, {
 			delimiter: "|",
 			download: true,
 			header: true,
 			complete: function(d) {
-				st.traits.traitsResponse(d);
-				setTimeout(st.init2, 10);
+				st.traits.response(d);
+				setTimeout(callback, 10);
 			},
 			encoding: "UTF-8",
 			quotes: true,
@@ -26,8 +26,8 @@ st.traits = {
 		});
 	},
 	
-	traitsResponse: function(d) {
-		st.log("st.traits.traitsResponse");
+	response: function(d) {
+		st.log("st.traits.response");
 		st.log(d);
 		st.traits.list = d.data;
 	}

@@ -4,20 +4,20 @@ st.locomotion = {
 
 	list: [],	
 
-	init: function() {
+	init: function(callback) {
 		st.log("st.locomotion.init");
-		st.locomotion.loadLocomotion();
+		st.locomotion.request(callback);
 	},
 	
-	loadLocomotion: function() {
-		st.log("st.locomotion.loadlocomotion");
+	request: function(callback) {
+		st.log("st.locomotion.request");
 		var url = "data/locomotion.csv?t=" + (new Date()).getTime();
 		Papa.parse(url, {
 			download: true,
 			header: true,
 			complete: function(d) {
-				st.locomotion.locomotionResponse(d);
-				setTimeout(st.init5, 10);
+				st.locomotion.response(d);
+				setTimeout(callback, 10);
 			},
 			encoding: "UTF-8",
 			quotes: true,
@@ -25,8 +25,8 @@ st.locomotion = {
 		});
 	},
 	
-	locomotionResponse: function(d) {
-		st.log("st.locomotion.locomotionResponse");
+	response: function(d) {
+		st.log("st.locomotion.response");
 		st.log(d);
 		st.locomotion.list = d.data;
 	},

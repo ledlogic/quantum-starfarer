@@ -21,6 +21,12 @@ st.math = {
 	dieArray: function(array) {
 		return Math.floor(Math.random() * array.length);
 	},
+	selArray: function(array) {
+		st.log("st.math.selArray");
+		var index = st.math.dieArray(array);
+		st.log("index[" + index + "]");
+		return array[index]; 
+	},
 	minDieN: function(die) {
 		var d20a = st.math.dieN(die);
 		var d20b = st.math.dieN(die);

@@ -2,7 +2,8 @@
 
 st.char = {
 	stats: {
-		body: 0,
+		arms: null,
+		body: null,
 		cost: 0,
 		durability: 0,
 		endurance: 0,
@@ -56,7 +57,7 @@ st.char = {
 		// traits
 		for (var i=0; i < 2; ) {
 			st.log("trait[" + i + "]");
-			var trait = st.traits.list[st.math.dieArray(st.traits.list)];
+			var trait = st.math.selArray(st.traits.list);
 			st.log("trait.Trait[" + trait.Trait + "]");
 			if (!st.char.hasTrait(trait)) {
 				st.char.addTrait(trait);
@@ -66,7 +67,7 @@ st.char = {
 		st.char.stats.traits.sort(st.char.traitsComparator);
 		
 		// weakness
-		var weakness = st.weaknesses.list[st.math.dieArray(st.weaknesses.list)];
+		var weakness = st.math.selArray(st.weaknesses.list);
 		st.log("weakness[" + weakness.Weakness + "]");
 		st.char.stats.weakness = weakness;		
 	},
@@ -75,14 +76,19 @@ st.char = {
 		st.log("st.char.initRobot");
 		
 		// body
-		var body = st.body.list[st.math.dieArray(st.body.list)];
+		var body = st.math.selArray(st.body.list);
 		st.log("body[" + body.Body + "]");
 		st.char.setBody(body);
 		
 		// locomotion
-		var locomotion = st.locomotion.list[st.math.dieArray(st.locomotion.list)];
+		var locomotion = st.math.selArray(st.locomotion.list);
 		st.log("locomotion[" + locomotion.Locomotion + "]");
 		st.char.setLocomotion(locomotion);
+		
+		// arms
+		var arms = st.math.selArray(st.arms.list);
+		st.log("arms[" + arms.Arms + "]");
+		st.char.setArms(arms);
 	},
 	
 	traitsComparator: function(a, b) {
@@ -211,6 +217,19 @@ st.char = {
 		
 		var p = parseFloat(locomotion.Cost.replace("%", ""),10);
 		var cr = (p/100.0) * parseInt(st.char.stats.body.Cost,10)
+		st.char.incrCost(cr);
+		st.log(st.char.stats);
+	},
+	
+	setArms: function(arms) {
+		st.log("st.char.setArms");
+		st.log("arms[" + arms.Arms + "]");
+		
+		st.char.stats.arms = arms;
+		
+		st.char.setTechAtLeast(arms.Tech);
+		
+		var cr = parseFloat(arms.Cost,10);
 		st.char.incrCost(cr);
 		st.log(st.char.stats);
 	},

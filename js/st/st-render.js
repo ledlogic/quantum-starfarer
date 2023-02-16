@@ -10,6 +10,7 @@ st.render = {
 		st.render.renderStats();
 		st.render.renderBody();		
 		st.render.renderLocomotion();		
+		st.render.renderArms();		
 		st.render.renderSkills();
 		st.render.renderTraits();		
 		st.render.renderWeakness();		
@@ -89,7 +90,6 @@ st.render = {
 	renderTraits: function() {
 		st.log("st.render.renderTraits");
 		var size = _.size(st.char.stats.traits);
-		
 		if (size) {
 			var t = [];
 			t.push("<table class=\"st-traits\"><tbody>");
@@ -110,10 +110,9 @@ st.render = {
 	},
 	renderWeakness: function() {
 		st.log("st.render.renderWeakness");
-		var t = [];
-			
 		var weakness = st.char.stats.weakness;
 		if (weakness) {
+			var t = [];
 			t.push("<table class=\"st-weakness\"><tbody>");
 			t.push("<tr><th colspan=\"2\" class=\"st-weakness-desc\">Weakness</th></tr>");
 	
@@ -125,9 +124,9 @@ st.render = {
 			
 			t.push(r.join(""));
 			t.push("</tbody></table>");
+	
+			$(".st-page-ft").append(t.join(""));
 		}
-
-		$(".st-page-ft").append(t.join(""));
 	},
 	renderBody: function() {
 		st.log("st.render.renderBody");
@@ -160,7 +159,6 @@ st.render = {
 		var locomotion = st.char.stats.locomotion;
 		var size = _.size(locomotion);
 		
-		// traits
 		if (locomotion) {
 			var t = [];
 			t.push("<table class=\"st-locomotion\"><tbody>");
@@ -182,6 +180,35 @@ st.render = {
 	
 			$(".st-page-ft").append(t.join(""));
 		}
+	},
+	
+	renderArms: function() {
+		st.log("st.render.renderArms");
+		var arms = st.char.stats.arms;
+		var size = _.size(arms);
+		
+		if (arms) {
+			var t = [];
+		
+			t.push("<table class=\"st-arms\"><tbody>");
+			t.push("<tr><th colspan=\"" + size + "\" class=\"st-arms-desc\">Arms</th></tr>");
+			
+			var r = [];
+			_.map(arms, function(val, key) {
+				if (key == "Cost") {
+					val = parseInt(val, 10).toLocaleString() + " [Cr]";
+				}
+				r.push("<tr>");
+				r.push("<th>" + key + "</th>");
+				r.push("<td>" + val + "</td>");
+				r.push("</tr>");
+			});
+			t.push(r.join(""));
+			t.push("</tbody></table>");
+	
+			$(".st-page-ft").append(t.join(""));
+		}
 	}
+	
 	
 };

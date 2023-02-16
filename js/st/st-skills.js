@@ -12,7 +12,8 @@ st.skills = {
 		"technical"
 	],		
 
-	init: function() {
+	init: function(callback) {
 		st.log("st.skills.init");
+		setTimeout(callback, 10);
 	}
 };

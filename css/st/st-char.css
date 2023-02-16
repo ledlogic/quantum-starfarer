@@ -132,6 +132,38 @@
 	text-align: left;
 }
 
+/* st-arms */
+.st-arms {
+	border: 1px solid #000000;
+	margin-bottom: 10px;
+	text-align: center;
+	width: 100%;
+}
+
+.st-arms th, .st-arms td {
+	border: 1px solid #000000;
+	min-height: 2em;
+	height: 2em;
+	text-transform: capitalize;
+	padding: 4px;
+}
+
+.st-arms th.st-arms-desc {
+	text-align: center;
+}
+
+.st-arms th {
+	text-align: right;
+}
+
+.st-arms th:first-of-type {
+	width:30%;
+}
+
+.st-arms td {
+	text-align: left;
+}
+
 /* st-skills */
 .st-skills {
 	border: 1px solid #000000;
