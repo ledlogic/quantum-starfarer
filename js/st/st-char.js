@@ -32,10 +32,8 @@ st.char = {
 		
 		// skills
 		st.char.setSkill("physical", 1);
-		
 		var additionalSkillPoints = 3 + (st.math.probMet(0.3) ? 1 : 0);
 		st.log("additionalSkillPoints[" + additionalSkillPoints + "]");
-		
 		for (var i=0; i< additionalSkillPoints; i++) {
 			st.log("additionalSkill[" + i + "]");
 			var skill = st.skills.list[st.math.dieArray(st.skills.list)];
@@ -44,20 +42,26 @@ st.char = {
 		}
 		
 		// traits
-		for (var i=0; i < 2; i++) {
+		for (var i=0; i < 2; ) {
 			st.log("trait[" + i + "]");
 			var trait = st.traits.list[st.math.dieArray(st.traits.list)];
 			st.log("trait.Trait[" + trait.Trait + "]");
 			if (!st.char.hasTrait(trait)) {
 				st.char.addTrait(trait);
+				i++;
 			}
 		}
+		st.char.stats.traits.sort(st.char.traitsComparator);
 		
 		setTimeout(st.render.render, 10);
 	},
 	
+	traitsComparator: function(a, b) {
+		return a.Trait > b.Trait ? 1 : -1;		
+	},
+	
 	addTrait: function(trait) {
-		this.stats.traits.push(trait);
+		st.char.stats.traits.push(trait);
 	},
 	
 	getStat: function(stat) {
@@ -72,8 +76,9 @@ st.char = {
 		st.log("st.char.hasTrait");
 		st.log("trait.Trait[" + trait.Trait + "]");
 		var ret = false;
-		for (var i=0; i < st.char.stats.traits; i++) {
+		for (var i=0; i < _.size(st.char.stats.traits); i++) {
 			var iterTrait = st.char.stats.traits[i];
+			st.log("iterTrait[" + iterTrait.Trait + "]");
 			if (trait.Trait == iterTrait.Trait) {
 				ret = true;
 			}
@@ -127,7 +132,7 @@ st.char = {
 	setEndurance: function(endurance) {
 		st.log("st.char.setEndurance");
 		st.char.setStat("endurance", endurance);
-		st.char.incrCost(500e3 + 10e3*endurance);
+		st.char.incrCost(50e3 + 1e3*endurance);
 	},
 	
 	setLifeblood: function(lifeblood) {

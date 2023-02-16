@@ -41,6 +41,7 @@ a {
 	border: 1px solid #000000;
 	margin-bottom: 10px;
 	text-align: center;
+	width: 50%;
 }
 
 .st-cost th, .st-cost td {
@@ -64,6 +65,7 @@ a {
 	border: 1px solid #000000;
 	margin-bottom: 10px;
 	text-align: center;
+	width: 50%;
 }
 
 .st-skills th, .st-skills td {
@@ -71,6 +73,7 @@ a {
 	min-height: 2em;
 	height: 2em;
 	text-align: center;
+	text-transform: capitalize;
 	padding: 4px;
 }
 
@@ -78,7 +81,27 @@ a {
 	text-align: center;
 }
 
-.st-skills td {
+/* st-traits */
+.st-traits {
+	border: 1px solid #000000;
+	margin-bottom: 10px;
+	text-align: center;
+	width: 50%;
+}
+
+.st-traits th, .st-traits td {
+	border: 1px solid #000000;
+	min-height: 2em;
+	height: 2em;
+	text-align: center;
+	padding: 4px;
+}
+
+.st-traits th.st-traits-desc {
+	text-align: center;
+}
+
+.st-traits td {
 	text-transform: capitalize;
 }
 

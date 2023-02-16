@@ -9,7 +9,7 @@ st.render = {
 		st.render.renderReset();
 		st.render.renderStats();
 		st.render.renderSkills();
-		//st.render.renderTraits();		
+		st.render.renderTraits();		
 		$(".st-page").removeClass("st-initial-state");
 	},
 	renderReset: function() {
@@ -34,7 +34,7 @@ st.render = {
 		var cost= st.char.stats.cost;
 		r.push("<tr>");
 		r.push("<th>Cost:</th>");
-		r.push("<td>" + cost + " Cr</td>");
+		r.push("<td>" + cost.toLocaleString() + " Cr</td>");
 		r.push("</tr>");		
 	
 		var endurance= st.char.stats.endurance;
@@ -67,6 +67,26 @@ st.render = {
 			r.push("<tr>");
 			r.push("<td>" + key + "</td>");
 			r.push("<td>" + val + "</td>");
+			r.push("</tr>");
+		});
+		t.push(r.join(""));
+		t.push("</tbody></table>");
+
+		$(".st-page-ft").append(t.join(""));
+	},
+	renderTraits: function() {
+		st.log("st.render.renderTraits");
+		var t = [];
+			
+		// skills
+		t.push("<table class=\"st-traits\"><tbody>");
+		t.push("<tr><th colspan=\"" + _.size(st.char.stats.traits) + "\" class=\"st-traits-desc\">Traits</th></tr>");
+		
+		var r = [];
+		_.map(st.char.stats.traits, function(val, key) {
+			r.push("<tr>");
+			r.push("<td>" + val.Trait + "</td>");
+			r.push("<td>" + val.Description + "</td>");
 			r.push("</tr>");
 		});
 		t.push(r.join(""));
