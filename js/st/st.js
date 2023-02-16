@@ -14,10 +14,17 @@ var st = {
 	},
 	
 	init2: function() {
+		st.log("st.init2");
 		st.weaknesses.init();
 	},
 	
 	init3: function() {
+		st.log("st.init3");
+		st.body.init();
+	},
+	
+	init4: function() {
+		st.log("st.init4");
 		st.char.init();
 		st.actions.init();
 		st.render.init();

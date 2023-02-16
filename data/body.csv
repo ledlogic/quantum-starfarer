@@ -1,0 +1,7 @@
+Body,Cost,Reliability,Durability,Tech
+Small,8000,4,6,Space
+Medium,6000,6,12,Space
+Large,10000,8,16,Atomic
+XL,20000,10,20,Mechanical
+XXL,25000,20,40,Mechanical
+XXXL,30000,30,60, Mechanical
