@@ -1,7 +1,7 @@
 /* st-char.css */
 .st-title {
 	background: #000000;
-	color: rgb(127, 0, 255);
+	color: #ffffff;
 	font-size: 28px;
 }
 
@@ -26,10 +26,6 @@
   padding-left: 0;
 }
 
-a {
-	color: rgb(127, 0, 255);
-}
-
 .st-form-choices li:before {
   content: "\25BA \0020";
   top: 5px;
@@ -41,7 +37,7 @@ a {
 	border: 1px solid #000000;
 	margin-bottom: 10px;
 	text-align: center;
-	width: 50%;
+	width: 100%;
 }
 
 .st-cost th, .st-cost td {
@@ -65,7 +61,7 @@ a {
 	border: 1px solid #000000;
 	margin-bottom: 10px;
 	text-align: center;
-	width: 50%;
+	width: 100%;
 }
 
 .st-skills th, .st-skills td {
@@ -86,10 +82,10 @@ a {
 	border: 1px solid #000000;
 	margin-bottom: 10px;
 	text-align: center;
-	width: 50%;
+	width: 100%;
 }
 
-.st-traits th, .st-traits td {
+.st-traits td {
 	border: 1px solid #000000;
 	min-height: 2em;
 	height: 2em;
@@ -97,12 +93,13 @@ a {
 	padding: 4px;
 }
 
-.st-traits th.st-traits-desc {
-	text-align: center;
+.st-traits td:first-of-type {
+	text-transform: capitalize;
+	width:25%;
 }
 
-.st-traits td {
-	text-transform: capitalize;
+.st-traits th.st-traits-desc {
+	text-align: center;
 }
 
 .st-clear {

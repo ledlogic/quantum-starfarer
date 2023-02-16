@@ -4,11 +4,11 @@
 	position: relative;
 	min-height: 512px;
 	text-align: center;
-	width: 100%;
+	width: 50%;
+	margin: 0 25%;
 }
 
 .st-page-ft {
 	margin: 0px auto;
 	position: relative;
-	width: 980px;
 }
