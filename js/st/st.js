@@ -36,6 +36,11 @@ var st = {
 
 	init5: function() {
 		st.log("st.init5");
+		st.tech.init();
+	},
+
+	init6: function() {
+		st.log("st.init6");
 		st.char.init();
 		st.actions.init();
 		st.render.init();
