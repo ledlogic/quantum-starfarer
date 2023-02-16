@@ -29,5 +29,13 @@ st.locomotion = {
 		st.log("st.locomotion.locomotionResponse");
 		st.log(d);
 		st.locomotion.list = d.data;
+	},
+	
+	findLocomotion: function(locomotionKey) {
+		st.log("st.locomotion.findLocomotion");
+		st.log("locomotionKey[" + locomotionKey + "]");
+		var ret = _.find(st.locomotion.list, function (locomotion) { return locomotion.Locomotion == locomotionKey; });
+		st.log("ret[" + ret + "]");
+		return ret;
 	}
 };

@@ -36,7 +36,6 @@
 .st-cost {
 	border: 1px solid #000000;
 	margin-bottom: 10px;
-	text-align: center;
 	width: 100%;
 }
 
@@ -48,19 +47,27 @@
 	padding: 4px;
 }
 
-.st-cost th.st-cost-desc {
-	text-align: center;
+.st-cost th {
+	text-align: right;
+}
+
+.st-cost th:first-of-type {
+	width:50%;
 }
 
 .st-cost td {
 	text-transform: capitalize;
+	text-align: left;
+}
+
+.st-cost td.st-tech {
+	text-align: left;
 }
 
 /* st-body */
 .st-body {
 	border: 1px solid #000000;
 	margin-bottom: 10px;
-	text-align: center;
 	width: 100%;
 }
 
@@ -68,13 +75,56 @@
 	border: 1px solid #000000;
 	min-height: 2em;
 	height: 2em;
-	text-align: center;
 	text-transform: capitalize;
 	padding: 4px;
 }
 
 .st-body th.st-body-desc {
 	text-align: center;
+}
+
+.st-body th {
+	text-align: right;
+}
+
+.st-body th:first-of-type {
+	width:50%;
+}
+
+.st-body td {
+	text-align: left;
+}
+
+/* st-locomotion */
+.st-locomotion {
+	border: 1px solid #000000;
+	margin-bottom: 10px;
+	text-align: center;
+	width: 100%;
+}
+
+.st-locomotion th, .st-locomotion td {
+	border: 1px solid #000000;
+	min-height: 2em;
+	height: 2em;
+	text-transform: capitalize;
+	padding: 4px;
+}
+
+.st-locomotion th.st-locomotion-desc {
+	text-align: center;
+}
+
+.st-locomotion th {
+	text-align: right;
+}
+
+.st-locomotion th:first-of-type {
+	width:50%;
+}
+
+.st-locomotion td {
+	text-align: left;
 }
 
 /* st-skills */

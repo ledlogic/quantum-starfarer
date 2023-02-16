@@ -9,6 +9,7 @@ st.render = {
 		st.render.renderReset();
 		st.render.renderStats();
 		st.render.renderBody();		
+		st.render.renderLocomotion();		
 		st.render.renderSkills();
 		st.render.renderTraits();		
 		st.render.renderWeakness();		
@@ -22,7 +23,7 @@ st.render = {
 
 		var t = [];
 			
-		// skills
+		// stats
 		t.push("<table class=\"st-cost\"><tbody>");
 
 		var r = [];
@@ -32,11 +33,18 @@ st.render = {
 		r.push("<th>Species:</th>");
 		r.push("<td>" + species + "</td>");
 		r.push("</tr>");		
+		
+		var tech= st.char.stats.tech;
+		var description = st.tech.findTech(tech).Description;
+		r.push("<tr>");
+		r.push("<th>Tech:</th>");
+		r.push("<td class=\"st-tech\">" + tech + ":<br/>" + description + "</td>");
+		r.push("</tr>");		
 
 		var cost= st.char.stats.cost;
 		r.push("<tr>");
 		r.push("<th>Cost:</th>");
-		r.push("<td>" + cost.toLocaleString() + " Cr</td>");
+		r.push("<td>" + cost.toLocaleString() + " [Cr]</td>");
 		r.push("</tr>");		
 	
 		var endurance= st.char.stats.endurance;
@@ -62,7 +70,6 @@ st.render = {
 		st.log("st.render.renderSkills");
 		var t = [];
 			
-		// skills
 		t.push("<table class=\"st-skills\"><tbody>");
 		t.push("<tr><th colspan=\"" + _.size(st.char.stats.skills) + "\" class=\"st-skills-desc\">Skills</th></tr>");
 		
@@ -82,7 +89,6 @@ st.render = {
 		st.log("st.render.renderTraits");
 		var size = _.size(st.char.stats.traits);
 		
-		// traits
 		if (size) {
 			var t = [];
 			t.push("<table class=\"st-traits\"><tbody>");
@@ -105,8 +111,6 @@ st.render = {
 		st.log("st.render.renderWeakness");
 		var t = [];
 			
-		// weakness
-		
 		var weakness = st.char.stats.weakness;
 		if (weakness) {
 			t.push("<table class=\"st-weakness\"><tbody>");
@@ -127,9 +131,8 @@ st.render = {
 	renderBody: function() {
 		st.log("st.render.renderBody");
 		var body = st.char.stats.body;
-		var size = _.size(st.char.stats.body);
+		var size = _.size(body);
 		
-		// traits
 		if (body) {
 			var t = [];
 			t.push("<table class=\"st-body\"><tbody>");
@@ -138,8 +141,36 @@ st.render = {
 			var r = [];
 			_.map(body, function(val, key) {
 				r.push("<tr>");
-				r.push("<td>" + key + "</td>");
+				r.push("<th>" + key + "</th>");
 				r.push("<td>" + val + "</td>");
+				r.push("</tr>");
+			});
+			t.push(r.join(""));
+			t.push("</tbody></table>");
+	
+			$(".st-page-ft").append(t.join(""));
+		}
+	},
+	renderLocomotion: function() {
+		st.log("st.render.renderLocomotion");
+		var locomotion = st.char.stats.locomotion;
+		var size = _.size(locomotion);
+		
+		// traits
+		if (locomotion) {
+			var t = [];
+			t.push("<table class=\"st-locomotion\"><tbody>");
+			t.push("<tr><th colspan=\"" + size + "\" class=\"st-locomotion-desc\">Locomotion</th></tr>");
+			
+			var r = [];
+			_.map(locomotion, function(val, key) {
+				var rate = "";
+				if (key == "Clear" || key == "Rough") {
+					rate = " [m/round]";
+				}
+				r.push("<tr>");
+				r.push("<th>" + key + "</th>");
+				r.push("<td>" + val + rate + "</td>");
 				r.push("</tr>");
 			});
 			t.push(r.join(""));

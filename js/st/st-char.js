@@ -10,6 +10,7 @@ st.char = {
 		reliability: 0,
 		skills: { },
 		species: null,
+		tech: null,
 		traits: [],
 		weakness: null
 	},
@@ -26,6 +27,8 @@ st.char = {
 	initAndroid: function() {
 		st.log("st.char.initAndroid");
 		
+		st.char.setTechAtLeast("Space");
+		
 		// endurance
 		var endurance = st.math.die(2, 6, 0);
 		st.char.setEndurance(endurance);
@@ -33,6 +36,11 @@ st.char = {
 		// lifeblood
 		var lifeblood = st.math.die(4, 6, 0);
 		st.char.setLifeblood(lifeblood);
+		
+		// locomotion
+		var locomotion = st.locomotion.findLocomotion("Two Legs");
+		locomotion2 = _.omit(locomotion, ["Cost"]);
+		st.char.stats.locomotion = locomotion2;
 		
 		// skills
 		st.char.setSkill("physical", 1);
@@ -70,6 +78,11 @@ st.char = {
 		var body = st.body.list[st.math.dieArray(st.body.list)];
 		st.log("body[" + body.Body + "]");
 		st.char.setBody(body);
+		
+		// locomotion
+		var locomotion = st.locomotion.list[st.math.dieArray(st.locomotion.list)];
+		st.log("locomotion[" + locomotion.Locomotion + "]");
+		st.char.setLocomotion(locomotion);
 	},
 	
 	traitsComparator: function(a, b) {
@@ -178,10 +191,47 @@ st.char = {
 		st.log("body[" + body.Body + "]");
 		
 		st.char.stats.body = body;
+		
+		st.char.setTechAtLeast(body.Tech);
+		
 		st.char.stats.reliability = parseInt(body.Reliability,10);
 		st.char.stats.durability = parseInt(body.Durability,10);
-		st.char.incrCost(parseInt(body.Cost,10));
+		var cr = parseInt(body.Cost,10);
+		st.char.incrCost(cr);
 		st.log(st.char.stats);
+	},
+	
+	setLocomotion: function(locomotion) {
+		st.log("st.char.setLocomotion");
+		st.log("locomotion[" + locomotion.Locomotion + "]");
+		
+		st.char.stats.locomotion = locomotion;
+		
+		st.char.setTechAtLeast(locomotion.Tech);
+		
+		var p = parseFloat(locomotion.Cost.replace("%", ""),10);
+		var cr = (p/100.0) * parseInt(st.char.stats.body.Cost,10)
+		st.char.incrCost(cr);
+		st.log(st.char.stats);
+	},
+	
+	setTechAtLeast: function(tech) {
+		st.log("st.char.setTechAtLeast");
+		st.log("tech[" + tech + "]");
+		
+		// only increment techs.
+		var currentIndex = -1;
+		var currentTech = st.char.stats.tech;
+		if (currentTech) {
+			currentIndex = st.tech.findTechIndex(currentTech);
+		}
+		var newIndex = st.tech.findTechIndex(tech);
+		st.log("currentIndex[" + currentIndex + "]");
+		st.log("newIndex[" + newIndex + "]");
+		if (newIndex > currentIndex) {
+			st.char.stats.tech = tech;
+			st.log(st.char.stats);
+		}
 	}
 	
 };
