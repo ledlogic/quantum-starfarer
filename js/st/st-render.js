@@ -76,7 +76,7 @@ st.render = {
 		var r = [];
 		_.map(st.char.stats.skills, function(val, key) {
 			r.push("<tr>");
-			r.push("<td>" + key + "</td>");
+			r.push("<th>" + key + "</th>");
 			r.push("<td>" + val + "</td>");
 			r.push("</tr>");
 		});
@@ -142,6 +142,9 @@ st.render = {
 			_.map(body, function(val, key) {
 				r.push("<tr>");
 				r.push("<th>" + key + "</th>");
+				if (key == "Cost") {
+					val = parseInt(val, 10).toLocaleString() + " [Cr]";
+				}
 				r.push("<td>" + val + "</td>");
 				r.push("</tr>");
 			});
