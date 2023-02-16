@@ -1,6 +1,6 @@
 Locomotion,Cost,Clear,Rough,Tech
 Wheels,-10%,15,5,Mechanical
-Tracks,0%,10,10,,Mechanical
+Tracks,0%,10,10,Mechanical
 Two Legs,+10%,10,8,Atomic
 Multiple Legs,+20%,10,10,Space
 Rotors/Thrusters,+40%,20,20,Space
