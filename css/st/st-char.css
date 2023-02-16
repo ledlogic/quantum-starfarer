@@ -36,6 +36,51 @@ a {
   left: -10px;
 }
 
+/* st-cost */
+.st-cost {
+	border: 1px solid #000000;
+	margin-bottom: 10px;
+	text-align: center;
+}
+
+.st-cost th, .st-cost td {
+	border: 1px solid #000000;
+	min-height: 2em;
+	height: 2em;
+	text-align: center;
+	padding: 4px;
+}
+
+.st-cost th.st-cost-desc {
+	text-align: center;
+}
+
+.st-cost td {
+	text-transform: capitalize;
+}
+
+/* st-skills */
+.st-skills {
+	border: 1px solid #000000;
+	margin-bottom: 10px;
+	text-align: center;
+}
+
+.st-skills th, .st-skills td {
+	border: 1px solid #000000;
+	min-height: 2em;
+	height: 2em;
+	text-align: center;
+	padding: 4px;
+}
+
+.st-skills th.st-skills-desc {
+	text-align: center;
+}
+
+.st-skills td {
+	text-transform: capitalize;
+}
 
 .st-clear {
 	clear: both;

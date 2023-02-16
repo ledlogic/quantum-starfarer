@@ -1,13 +1,12 @@
 /* st-char.js */
 
 st.char = {
-	species:null,
-	
 	stats: {
 		cost: 0,
 		endurance: 0,
 		lifeblood: 0,
 		skills: { },
+		species: null,
 		traits: []
 	},
 	
@@ -53,6 +52,8 @@ st.char = {
 				st.char.addTrait(trait);
 			}
 		}
+		
+		setTimeout(st.render.render, 10);
 	},
 	
 	addTrait: function(trait) {
@@ -104,7 +105,7 @@ st.char = {
 
 	setSpecies: function(species) {
 		st.log("st.char.setSpecies");
-		this.species = species;
+		st.char.stats.species = species;
 		switch (species) {
 			case "android":
 				st.char.initAndroid();

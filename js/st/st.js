@@ -16,6 +16,7 @@ var st = {
 	init2: function() {
 		st.char.init();
 		st.actions.init();
+		st.render.init();
 	}
 };
 
