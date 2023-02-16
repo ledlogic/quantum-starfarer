@@ -179,13 +179,16 @@ st.render = {
 			
 			var r = [];
 			_.map(locomotion, function(val, key) {
-				var rate = "";
+				var note = "";
 				if (key == "Clear" || key == "Rough") {
-					rate = " [m/round]";
+					note = " [m/round]";
+				}
+				if (key == "Cost") {
+					note = " [of Body Cost]";
 				}
 				r.push("<tr>");
 				r.push("<th>" + key + "</th>");
-				r.push("<td>" + val + rate + "</td>");
+				r.push("<td>" + val + note + "</td>");
 				r.push("</tr>");
 			});
 			t.push(r.join(""));
