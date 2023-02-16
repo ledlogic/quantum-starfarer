@@ -50,7 +50,7 @@ st.char = {
 		st.log("additionalSkillPoints[" + additionalSkillPoints + "]");
 		for (var i=0; i< additionalSkillPoints; i++) {
 			st.log("additionalSkill[" + i + "]");
-			var skill = st.skills.list[st.math.dieArray(st.skills.list)];
+			var skill = st.math.selArray(st.skills.list);
 			st.log("skill[" + skill + "]");
 			st.char.incrSkill(skill, 1);
 		}
@@ -95,6 +95,23 @@ st.char = {
 		var brain = st.math.selArray(st.brains.list);
 		st.log("brain[" + brain.Brain + "]");
 		st.char.setBrain(brain);
+		
+		// skills
+		var skills = parseInt(brain.Skills,10);
+		var skillMax = parseInt(brain["Max Skill Level"],10);
+		st.log("skills[" + skills + "]");
+		st.log("skillMax[" + skillMax + "]");
+		for (var i=0; i< skills; ) {
+			st.log("skills[" + i + "]");
+			var skill = st.math.selArray(st.skills.list);
+			st.log("skill[" + skill + "]");
+			var currentSkill = st.char.getSkill(skill);
+			st.log("currentSkill[" + currentSkill + "]");
+			if (currentSkill < skillMax) {
+				st.char.incrSkill(skill, 1);
+				i++
+			}
+		}
 	},
 	
 	traitsComparator: function(a, b) {

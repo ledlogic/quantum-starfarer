@@ -37,10 +37,9 @@ st.render = {
 
 		var r = [];
 
-		var name= st.char.stats.name;
 		r.push("<tr>");
-		r.push("<th>Factory Name:</th>");
-		r.push("<td>" + name + "</td>");
+		r.push("<th>Name:</th>");
+		r.push("<td>" +  "</td>");
 		r.push("</tr>");		
 
 		var species= st.char.stats.species;
@@ -102,24 +101,27 @@ st.render = {
 	},
 	renderTraits: function() {
 		st.log("st.render.renderTraits");
-		var size = _.size(st.char.stats.traits);
-		if (size) {
-			var t = [];
-			t.push("<table class=\"st-traits\"><tbody>");
-			t.push("<tr><th colspan=\"" + size + "\" class=\"st-traits-desc\">Traits</th></tr>");
-			
-			var r = [];
-			_.map(st.char.stats.traits, function(val, key) {
-				r.push("<tr>");
-				r.push("<td>" + val.Trait + "</td>");
-				r.push("<td>" + val.Description + "</td>");
-				r.push("</tr>");
-			});
-			t.push(r.join(""));
-			t.push("</tbody></table>");
-	
-			$(".st-mental").append(t.join(""));
+		var t = [];
+		t.push("<table class=\"st-traits\"><tbody>");
+		t.push("<tr><th colspan=\"2\" class=\"st-traits-desc\">Traits</th></tr>");
+		
+		var r = [];
+		_.map(st.char.stats.traits, function(val, key) {
+			r.push("<tr>");
+			r.push("<td>" + val.Trait + "</td>");
+			r.push("<td>" + val.Description + "</td>");
+			r.push("</tr>");
+		});
+		for (var i=0; i<3; i++) {
+			r.push("<tr>");
+			r.push("<td>&nbsp;</td>");
+			r.push("<td>&nbsp;</td>");
+			r.push("</tr>");
 		}
+		t.push(r.join(""));
+		t.push("</tbody></table>");
+
+		$(".st-mental").append(t.join(""));
 	},
 	renderWeakness: function() {
 		st.log("st.render.renderWeakness");
