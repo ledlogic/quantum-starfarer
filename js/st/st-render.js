@@ -6,15 +6,22 @@ st.render = {
 	},
 	render: function() {
 		st.log("render skills");
-		st.render.renderReset();
+		
+		// physical
 		st.render.renderStats();
 		st.render.renderBody();		
-		st.render.renderLocomotion();		
+		st.render.renderLocomotion();
 		st.render.renderArms();		
+
+		// mental
+		st.render.renderBrain();		
 		st.render.renderSkills();
 		st.render.renderTraits();		
 		st.render.renderWeakness();		
-		$(".st-page").removeClass("st-initial-state");
+
+		$(".st-form").addClass("st-hidden");
+		$(".st-physical").removeClass("st-hidden");
+		$(".st-mental").removeClass("st-hidden");
 	},
 	renderReset: function() {
 		$(".st-page-ft").html("");
@@ -29,6 +36,12 @@ st.render = {
 		t.push("<tr><th colspan=\"2\" class=\"st-cost-desc\">Core</th></tr>");
 
 		var r = [];
+
+		var name= st.char.stats.name;
+		r.push("<tr>");
+		r.push("<th>Factory Name:</th>");
+		r.push("<td>" + name + "</td>");
+		r.push("</tr>");		
 
 		var species= st.char.stats.species;
 		r.push("<tr>");
@@ -66,7 +79,7 @@ st.render = {
 		t.push(r.join(""));
 		t.push("</tbody></table>");
 
-		$(".st-page-ft").append(t.join(""));
+		$(".st-physical").append(t.join(""));
 	},
 	renderSkills: function() {
 		st.log("st.render.renderSkills");
@@ -85,7 +98,7 @@ st.render = {
 		t.push(r.join(""));
 		t.push("</tbody></table>");
 
-		$(".st-page-ft").append(t.join(""));
+		$(".st-mental").append(t.join(""));
 	},
 	renderTraits: function() {
 		st.log("st.render.renderTraits");
@@ -105,7 +118,7 @@ st.render = {
 			t.push(r.join(""));
 			t.push("</tbody></table>");
 	
-			$(".st-page-ft").append(t.join(""));
+			$(".st-mental").append(t.join(""));
 		}
 	},
 	renderWeakness: function() {
@@ -125,7 +138,7 @@ st.render = {
 			t.push(r.join(""));
 			t.push("</tbody></table>");
 	
-			$(".st-page-ft").append(t.join(""));
+			$(".st-mental").append(t.join(""));
 		}
 	},
 	renderBody: function() {
@@ -151,7 +164,7 @@ st.render = {
 			t.push(r.join(""));
 			t.push("</tbody></table>");
 	
-			$(".st-page-ft").append(t.join(""));
+			$(".st-physical").append(t.join(""));
 		}
 	},
 	renderLocomotion: function() {
@@ -178,7 +191,7 @@ st.render = {
 			t.push(r.join(""));
 			t.push("</tbody></table>");
 	
-			$(".st-page-ft").append(t.join(""));
+			$(".st-physical").append(t.join(""));
 		}
 	},
 	
@@ -206,9 +219,37 @@ st.render = {
 			t.push(r.join(""));
 			t.push("</tbody></table>");
 	
-			$(".st-page-ft").append(t.join(""));
+			$(".st-physical").append(t.join(""));
 		}
-	}
+	},
 	
+	renderBrain: function() {
+		st.log("st.render.renderBrain");
+		var brain = st.char.stats.brain;
+		var size = _.size(brain);
+		
+		if (brain) {
+			var t = [];
+		
+			t.push("<table class=\"st-brain\"><tbody>");
+			t.push("<tr><th colspan=\"" + size + "\" class=\"st-brain-desc\">Brain</th></tr>");
+			
+			var r = [];
+			_.map(brain, function(val, key) {
+				if (key == "Cost") {
+					val = parseInt(val, 10).toLocaleString() + " [Cr]";
+				}
+				r.push("<tr>");
+				r.push("<th>" + key + "</th>");
+				r.push("<td>" + val + "</td>");
+				r.push("</tr>");
+			});
+			t.push(r.join(""));
+			t.push("</tbody></table>");
+	
+			$(".st-mental").append(t.join(""));
+		}
+	}	
+
 	
 };

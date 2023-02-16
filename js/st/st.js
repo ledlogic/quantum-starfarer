@@ -47,9 +47,14 @@ var st = {
 		st.log("st.init7");
 		st.arms.init(st.init8);
 	},
-
+	
 	init8: function() {
-		st.log("st.init8");
+		st.log("st.init7");
+		st.brains.init(st.init9);
+	},	
+
+	init9: function() {
+		st.log("st.init9");
 		st.char.init();
 		st.actions.init();
 		st.render.init();

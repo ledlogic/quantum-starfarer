@@ -4,6 +4,7 @@ st.char = {
 	stats: {
 		arms: null,
 		body: null,
+		brain: null,
 		cost: 0,
 		durability: 0,
 		endurance: 0,
@@ -89,6 +90,11 @@ st.char = {
 		var arms = st.math.selArray(st.arms.list);
 		st.log("arms[" + arms.Arms + "]");
 		st.char.setArms(arms);
+		
+		// brains
+		var brain = st.math.selArray(st.brains.list);
+		st.log("brain[" + brain.Brain + "]");
+		st.char.setBrain(brain);
 	},
 	
 	traitsComparator: function(a, b) {
@@ -233,6 +239,22 @@ st.char = {
 		st.char.incrCost(cr);
 		st.log(st.char.stats);
 	},
+	
+	setBrain: function(brain) {
+		st.log("st.char.setBrain");
+		st.log("brain[" + brain.Brain + "]");
+		
+		st.char.stats.brain = brain;
+		
+		st.char.setTechAtLeast(brain.Tech);
+		
+		var cr = parseFloat(brain.Cost,10);
+		st.char.incrCost(cr);
+		
+		st.char.stats.name = brain.Tech.substring(0,3);
+		
+		st.log(st.char.stats);
+	},	
 	
 	setTechAtLeast: function(tech) {
 		st.log("st.char.setTechAtLeast");
