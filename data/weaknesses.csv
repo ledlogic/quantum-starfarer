@@ -1,0 +1,6 @@
+"Weakness"|"Description"
+"Special Food"|"The android requires a special diet or supplement that is only available from the manufacturer. Failure to eat this causes one point of damage per day that can’t be recovered until the android begins eating their special food."
+"Special Meds"|"The android has medication that must be taken twice a day. The medication is usually in an inhaler or capsules. Missing their meds causes a subdermal tattooing to become visible after 12 hours. Thereafter, the android loses Endurance and Lifeblood as for the Special Food weakness."
+"Recharge"|"The android has cybernetics that require 4-6 hours of recharge. Failure to do this causes the android to lose the use of their traits, one every 12 hours and then lose a point of Physical every 12 hour. When the android reaches Physical 0 t is almost immobile. It may only crawl at half speed and make an action every other round. A recharge removes these penalties."
+"Directives"|"The android must obey any orders from a human wielding their control device. Failure to do this causes 1D of damage to the android. This happens every time the control is used and an order given, even the same order."
+"Unusual Appearance"|"The android is clearly not human due skin coloring, markings or other features (fur, pointed ears, cats’ eyes etc.)."

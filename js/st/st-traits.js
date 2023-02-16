@@ -11,7 +11,8 @@ st.traits = {
 	
 	loadTraits: function() {
 		st.log("st.traits.loadTraits");
-		Papa.parse("data/traits.csv", {
+		var url = "data/traits.csv?t=" + (new Date()).getTime();
+		Papa.parse(url, {
 			delimiter: "|",
 			download: true,
 			header: true,

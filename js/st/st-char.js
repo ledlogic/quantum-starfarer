@@ -7,7 +7,8 @@ st.char = {
 		lifeblood: 0,
 		skills: { },
 		species: null,
-		traits: []
+		traits: [],
+		weakness: null
 	},
 	
 	init: function() {
@@ -52,6 +53,11 @@ st.char = {
 			}
 		}
 		st.char.stats.traits.sort(st.char.traitsComparator);
+		
+		// weakness
+		var weakness = st.weaknesses.list[st.math.dieArray(st.weaknesses.list)];
+		st.log("weakness[" + weakness.Weakness + "]");
+		st.char.stats.weakness = weakness;		
 		
 		setTimeout(st.render.render, 10);
 	},

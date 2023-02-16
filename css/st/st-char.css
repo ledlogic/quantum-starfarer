@@ -102,6 +102,35 @@
 	text-align: center;
 }
 
+/* st-weakness */
+.st-weakness {
+	border: 1px solid #000000;
+	margin-bottom: 10px;
+	text-align: center;
+	width: 100%;
+}
+
+.st-weakness td {
+	border: 1px solid #000000;
+	min-height: 2em;
+	height: 2em;
+	text-align: center;
+	padding: 4px;
+}
+
+.st-weakness td:first-of-type {
+	text-transform: capitalize;
+	width:25%;
+}
+
+.st-weakness th.st-weakness-desc {
+	text-align: center;
+}
+
+.st-weakness td.st-weakness-desc {
+	text-align: left;
+}
+
 .st-clear {
 	clear: both;
 }

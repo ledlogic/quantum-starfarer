@@ -14,6 +14,10 @@ var st = {
 	},
 	
 	init2: function() {
+		st.weaknesses.init();
+	},
+	
+	init3: function() {
 		st.char.init();
 		st.actions.init();
 		st.render.init();

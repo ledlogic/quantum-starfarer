@@ -10,6 +10,7 @@ st.render = {
 		st.render.renderStats();
 		st.render.renderSkills();
 		st.render.renderTraits();		
+		st.render.renderWeakness();		
 		$(".st-page").removeClass("st-initial-state");
 	},
 	renderReset: function() {
@@ -78,7 +79,7 @@ st.render = {
 		st.log("st.render.renderTraits");
 		var t = [];
 			
-		// skills
+		// traits
 		t.push("<table class=\"st-traits\"><tbody>");
 		t.push("<tr><th colspan=\"" + _.size(st.char.stats.traits) + "\" class=\"st-traits-desc\">Traits</th></tr>");
 		
@@ -89,6 +90,25 @@ st.render = {
 			r.push("<td>" + val.Description + "</td>");
 			r.push("</tr>");
 		});
+		t.push(r.join(""));
+		t.push("</tbody></table>");
+
+		$(".st-page-ft").append(t.join(""));
+	},
+	renderWeakness: function() {
+		st.log("st.render.renderWeakness");
+		var t = [];
+			
+		// weakness
+		t.push("<table class=\"st-weakness\"><tbody>");
+		t.push("<tr><th colspan=\"2\" class=\"st-weakness-desc\">Weakness</th></tr>");
+		
+		var r = [];
+		var weakness = st.char.stats.weakness;
+		r.push("<tr>");
+		r.push("<td>" + weakness.Weakness + "</td>");
+		r.push("<td class=\"st-weakness-desc\">" + weakness.Description + "</td>");
+		r.push("</tr>");
 		t.push(r.join(""));
 		t.push("</tbody></table>");
 
