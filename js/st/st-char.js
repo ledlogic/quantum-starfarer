@@ -2,9 +2,12 @@
 
 st.char = {
 	stats: {
+		body: 0,
 		cost: 0,
+		durability: 0,
 		endurance: 0,
 		lifeblood: 0,
+		reliability: 0,
 		skills: { },
 		species: null,
 		traits: [],
@@ -58,8 +61,15 @@ st.char = {
 		var weakness = st.weaknesses.list[st.math.dieArray(st.weaknesses.list)];
 		st.log("weakness[" + weakness.Weakness + "]");
 		st.char.stats.weakness = weakness;		
+	},
+	
+	initRobot: function() {
+		st.log("st.char.initRobot");
 		
-		setTimeout(st.render.render, 10);
+		// body
+		var body = st.body.list[st.math.dieArray(st.body.list)];
+		st.log("body[" + body.Body + "]");
+		st.char.setBody(body);
 	},
 	
 	traitsComparator: function(a, b) {
@@ -116,15 +126,22 @@ st.char = {
 
 	setSpecies: function(species) {
 		st.log("st.char.setSpecies");
-		st.char.stats.species = species;
 		switch (species) {
 			case "android":
-				st.char.initAndroid();
+				st.char.stats.species = species;
+				st.char.initAndroid();				
+				break;
+			case "robot":
+				st.char.stats.species = species;
+				st.char.initRobot();				
 				break;
 			default:
 				st.err("Could not set species[" + species + "]");
+				return;
 				break;
 		}
+		
+		setTimeout(st.render.render, 10);
 	},
 	
 	setStat: function(statName, statValue) {
@@ -154,6 +171,17 @@ st.char = {
 		
 		st.char.stats.skills[skillName] = skillValue;
 		st.log(st.char.stats.skills);
+	},
+	
+	setBody: function(body) {
+		st.log("st.char.setBody");
+		st.log("body[" + body.Body + "]");
+		
+		st.char.stats.body = body;
+		st.char.stats.reliability = parseInt(body.Reliability,10);
+		st.char.stats.durability = parseInt(body.Durability,10);
+		st.char.incrCost(parseInt(body.Cost,10));
+		st.log(st.char.stats);
 	}
 	
 };

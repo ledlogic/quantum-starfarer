@@ -56,6 +56,27 @@
 	text-transform: capitalize;
 }
 
+/* st-body */
+.st-body {
+	border: 1px solid #000000;
+	margin-bottom: 10px;
+	text-align: center;
+	width: 100%;
+}
+
+.st-body th, .st-body td {
+	border: 1px solid #000000;
+	min-height: 2em;
+	height: 2em;
+	text-align: center;
+	text-transform: capitalize;
+	padding: 4px;
+}
+
+.st-body th.st-body-desc {
+	text-align: center;
+}
+
 /* st-skills */
 .st-skills {
 	border: 1px solid #000000;

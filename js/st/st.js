@@ -7,6 +7,12 @@ var st = {
 		}
 	},
 
+	err: function(s) {
+		if (typeof(window.console) != "undefined") {
+			console.error(s);
+		}
+	},
+
 	init: function() {
 		st.log("st.init");
 		st.skills.init();
@@ -25,6 +31,11 @@ var st = {
 	
 	init4: function() {
 		st.log("st.init4");
+		st.locomotion.init();
+	},
+
+	init5: function() {
+		st.log("st.init5");
 		st.char.init();
 		st.actions.init();
 		st.render.init();

@@ -8,6 +8,7 @@ st.render = {
 		st.log("render skills");
 		st.render.renderReset();
 		st.render.renderStats();
+		st.render.renderBody();		
 		st.render.renderSkills();
 		st.render.renderTraits();		
 		st.render.renderWeakness();		
@@ -39,15 +40,17 @@ st.render = {
 		r.push("</tr>");		
 	
 		var endurance= st.char.stats.endurance;
+		var reliability = st.char.stats.reliability;
 		r.push("<tr>");
-		r.push("<th>Endurance:</th>");
-		r.push("<td>" + endurance + "</td>");
-		r.push("</tr>");		
+		r.push("<th>Endurance/Reliability/Stamina:</th>");
+		r.push("<td>" + (endurance + reliability) + "</td>");
+		r.push("</tr>");	
 
+		var durability = st.char.stats.durability;
 		var lifeblood = st.char.stats.lifeblood;
 		r.push("<tr>");
-		r.push("<th>Lifeblood:</th>");
-		r.push("<td>" + lifeblood + "</td>");
+		r.push("<th>Durability/Lifeblood:</th>");
+		r.push("<td>" + (durability + lifeblood) + "</td>");
 		r.push("</tr>");		
 
 		t.push(r.join(""));
@@ -77,41 +80,73 @@ st.render = {
 	},
 	renderTraits: function() {
 		st.log("st.render.renderTraits");
-		var t = [];
-			
-		// traits
-		t.push("<table class=\"st-traits\"><tbody>");
-		t.push("<tr><th colspan=\"" + _.size(st.char.stats.traits) + "\" class=\"st-traits-desc\">Traits</th></tr>");
+		var size = _.size(st.char.stats.traits);
 		
-		var r = [];
-		_.map(st.char.stats.traits, function(val, key) {
-			r.push("<tr>");
-			r.push("<td>" + val.Trait + "</td>");
-			r.push("<td>" + val.Description + "</td>");
-			r.push("</tr>");
-		});
-		t.push(r.join(""));
-		t.push("</tbody></table>");
-
-		$(".st-page-ft").append(t.join(""));
+		// traits
+		if (size) {
+			var t = [];
+			t.push("<table class=\"st-traits\"><tbody>");
+			t.push("<tr><th colspan=\"" + size + "\" class=\"st-traits-desc\">Traits</th></tr>");
+			
+			var r = [];
+			_.map(st.char.stats.traits, function(val, key) {
+				r.push("<tr>");
+				r.push("<td>" + val.Trait + "</td>");
+				r.push("<td>" + val.Description + "</td>");
+				r.push("</tr>");
+			});
+			t.push(r.join(""));
+			t.push("</tbody></table>");
+	
+			$(".st-page-ft").append(t.join(""));
+		}
 	},
 	renderWeakness: function() {
 		st.log("st.render.renderWeakness");
 		var t = [];
 			
 		// weakness
-		t.push("<table class=\"st-weakness\"><tbody>");
-		t.push("<tr><th colspan=\"2\" class=\"st-weakness-desc\">Weakness</th></tr>");
 		
-		var r = [];
 		var weakness = st.char.stats.weakness;
-		r.push("<tr>");
-		r.push("<td>" + weakness.Weakness + "</td>");
-		r.push("<td class=\"st-weakness-desc\">" + weakness.Description + "</td>");
-		r.push("</tr>");
-		t.push(r.join(""));
-		t.push("</tbody></table>");
+		if (weakness) {
+			t.push("<table class=\"st-weakness\"><tbody>");
+			t.push("<tr><th colspan=\"2\" class=\"st-weakness-desc\">Weakness</th></tr>");
+	
+			var r = [];
+			r.push("<tr>");
+			r.push("<td>" + weakness.Weakness + "</td>");
+			r.push("<td class=\"st-weakness-desc\">" + weakness.Description + "</td>");
+			r.push("</tr>");
+			
+			t.push(r.join(""));
+			t.push("</tbody></table>");
+		}
 
 		$(".st-page-ft").append(t.join(""));
+	},
+	renderBody: function() {
+		st.log("st.render.renderBody");
+		var body = st.char.stats.body;
+		var size = _.size(st.char.stats.body);
+		
+		// traits
+		if (body) {
+			var t = [];
+			t.push("<table class=\"st-body\"><tbody>");
+			t.push("<tr><th colspan=\"" + size + "\" class=\"st-body-desc\">Body</th></tr>");
+			
+			var r = [];
+			_.map(body, function(val, key) {
+				r.push("<tr>");
+				r.push("<td>" + key + "</td>");
+				r.push("<td>" + val + "</td>");
+				r.push("</tr>");
+			});
+			t.push(r.join(""));
+			t.push("</tbody></table>");
+	
+			$(".st-page-ft").append(t.join(""));
+		}
 	}
+	
 };
